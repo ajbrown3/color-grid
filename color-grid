@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Color Grid</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #222;
+        }
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(10, 40px);
+            grid-template-rows: repeat(10, 40px);
+            gap: 2px;
+        }
+        .cell {
+            width: 40px;
+            height: 40px;
+            background-color: #333;
+            transition: background-color 0.3s ease;
+        }
+        .cell:hover {
+            background-color: hsl(var(--hue), 80%, 60%);
+        }
+    </style>
+</head>
+<body>
+    <div class="grid"></div>
+    <script>
+        const grid = document.querySelector(".grid");
+        for (let i = 0; i < 100; i++) {
+            const cell = document.createElement("div");
+            cell.classList.add("cell");
+            grid.appendChild(cell);
+        }
+        
+        document.querySelectorAll(".cell").forEach((cell, index) => {
+            cell.addEventListener("mouseover", () => {
+                const hue = Math.random() * 360;
+                cell.style.setProperty("--hue", hue);
+            });
+        });
+    </script>
+</body>
+</html>
