@@ -46,4 +46,25 @@ document.addEventListener("DOMContentLoaded", function () {
             }
 
             cellsAffected.forEach(cell => {
-                cell.st
+                cell.style.backgroundColor = getRandomColor();
+            });
+
+            radius++;
+        }, 100); // Adjust speed of ripple expansion
+    }
+
+    // Random Color Generator
+    function getRandomColor() {
+        return `hsl(${Math.random() * 360}, 100%, 70%)`;
+    }
+
+    // Click Event
+    grid.addEventListener("click", function (event) {
+        if (event.target.classList.contains("grid-cell")) {
+            const row = parseInt(event.target.dataset.row);
+            const col = parseInt(event.target.dataset.col);
+            rippleEffect(row, col);
+        }
+    });
+
+});
